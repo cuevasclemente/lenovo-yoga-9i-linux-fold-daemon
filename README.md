@@ -4,6 +4,22 @@ A small Linux daemon for the Lenovo Yoga 9i Aura / Yoga 9 2-in-1 14ILL10 that di
 
 It uses the Intel ISH **IIO hinge sensor** (`/sys/bus/iio/devices/.../in_angl0_raw`) instead of Lenovo's `lenovo_ymc` tablet-mode switch.
 
+## Authorship and attribution
+
+This project was co-authored by:
+
+- **Clemente Cuevas**
+- **GPT 5.5 on Pi**
+
+Sources and references consulted while debugging and building this:
+
+- [`johnmeade/linux-yoga-9i-2-in-1-aura`](https://github.com/johnmeade/linux-yoga-9i-2-in-1-aura) — primary Yoga 9i Aura Linux compatibility notes and ISH firmware workaround.
+- Lenovo support page for **Intel Integrated Sensor Hub Driver for Windows 11 (64-bit) - Yoga 9 2-in-1 14ILL10** (`DS572874`, package `zzyo037fue80ujh0.exe`) — source of the Windows firmware package used to extract `ishS_MEU_aligned.bin`.
+- [`dnsense.pub` Samsung Book 5 sensor-hub post](https://dnsense.pub/posts/9-book5-sensor-hub/) — referenced by the Yoga 9i Aura guide for the general ISH firmware-copy approach.
+- Linux kernel `lenovo_ymc` / Yoga Tablet Mode Control driver discussions and metadata — used to understand the `SW_TABLET_MODE` path that was sticking on this machine.
+- Linux kernel `hid-sensor-custom-intel-hinge` / HID Hinge driver metadata — used to understand the IIO hinge angle channels exposed after ISH firmware loaded.
+- Fedora and CachyOS community reports about Yoga 9i / Yoga 9i Aura tablet mode getting stuck — used to confirm this was a broader Linux behavior pattern, not just a local configuration issue.
+
 ## Why this exists
 
 On our Yoga 9 2-in-1 14ILL10 (`83LC`) under CachyOS, the upstream `lenovo_ymc` driver exposed a `Lenovo Yoga Tablet Mode Control switch` / `SW_TABLET_MODE` device. It looked promising, but was unsafe on this machine:
