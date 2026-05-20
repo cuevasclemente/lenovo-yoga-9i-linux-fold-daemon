@@ -1,0 +1,13 @@
+[Unit]
+Description=Disable internal keyboard and touchpad by Lenovo Yoga ISH hinge angle
+Documentation=https://github.com/johnmeade/linux-yoga-9i-2-in-1-aura
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/bin/yoga-fold-daemon
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
